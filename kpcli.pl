@@ -57,15 +57,15 @@ if (runtime_load_module(\%OPTIONAL_PM,'Capture::Tiny',[qw(capture)])) {
   # Tiny::Capture is used to catch those warnings and we silently hold them
   # until and unless someone tries to use dependant functions.
   my ($out, $err, @result) = capture(
-		sub { runtime_load_module(\%OPTIONAL_PM,'Clipboard',undef); } );
+		sub { runtime_load_module(\%OPTIONAL_PM,'Xclip',undef); } );
   if (length($err)) {
     # Cleanup the error message for for better viewing by the user
     $err =~ s/^\s+//g; $err =~ s/\s+$//g; $err =~ s/^(.*)$/ > $1/mg;
-    $OPTIONAL_PM{'Clipboard'}->{error} = $err;
+    $OPTIONAL_PM{'Xclip'}->{error} = $err;
   }
 } else {
   # If we didn't get Capture::Tiny, also mark Clipboard as not loaded.
-  $OPTIONAL_PM{'Clipboard'}->{loaded} = 0;
+  $OPTIONAL_PM{'Xclip'}->{loaded} = 0;
 }
 # Win32::Console::ANSI is needed to emulate ANSI colors on Windows
 if (lc($OSNAME) =~ m/^mswin/) {
@@ -1739,21 +1739,21 @@ sub cli_xN($$) {
   if (recent_sigint()) { return undef; } # Bail on SIGINT
 
   # If Clipboard is not avaiable we can't do this for the user
-  if  (! $state->{OPTIONAL_PM}->{'Clipboard'}->{loaded}) {
+  if  (! $state->{OPTIONAL_PM}->{'Xclip'}->{loaded}) {
     print "Error: $xNcmd requires the Clipboard and Capture::Tiny modules:\n" .
 	" - http://search.cpan.org/~king/Clipboard/\n" .
 	" - http://search.cpan.org/~dagolden/Capture-Tiny/\n" .
 	"";
-    if (defined($state->{OPTIONAL_PM}->{'Clipboard'}->{error})) {
+    if (defined($state->{OPTIONAL_PM}->{'Xclip'}->{error})) {
       print "\nThere was an error loading the Clipboard module, as follows:\n" .
-		$state->{OPTIONAL_PM}->{'Clipboard'}->{error} . "\n";
+		$state->{OPTIONAL_PM}->{'Xclipi'}->{error} . "\n";
     }
     return;
   }
 
   # If we're clearing the clipboard, just do that and return immediately.
   if ($xNcmd eq 'xx') {
-    Clipboard->copy('');
+    Xclip::copy2('');
     print "Clipboard cleared.\n";
     return;
   }
@@ -1786,7 +1786,7 @@ sub cli_xN($$) {
 	'xpx' => 'password',
 	};
   if (defined($to_copy)) {
-    Clipboard->copy($to_copy);
+    Xclip::copy2($to_copy);
     print "Copied $cp_map->{$xNcmd} for \"$ent->{title}\" to the clipboard.\n";
   }
 
@@ -1802,7 +1802,7 @@ sub cli_xN($$) {
       }
     }
     print "\n";
-    Clipboard->copy('');
+    Xclip::copy2('');
     print "Clipboard cleared.\n";
     return;
   }
