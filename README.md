@@ -1,4 +1,4 @@
-# kpclix: KeePass CLI X11 Clipboard Selection Compatible
+# kpclix: KeePass CLI X11 "Clipboard Selection"-compatible
 
 `kpclix` is a fork of the `kpcli` project, made compatible with the X11
 Clipboard Selection.
@@ -13,7 +13,7 @@ therefore pasted normally with `C-v`/`^V`).
 
 This fork refactored the code in favour of the [Xclip][xclip] module.
 
-This refactoration made `kpcli` `xclip`-compatible only. If you're using a
+This refactoration made `kpcli` xclip-compatible only. If you're using a
 GNU/Linux distribution, this is probably what you want.
 
 [clip]: https://metacpan.org/pod/Clipboard
@@ -74,5 +74,5 @@ sudo make uninstall
 - [kpcli][kpc]: A command line interface to KeePass database files.
 
 [kp]: https://keepass.info/index.html
-[kpc]:  https://www.keepassx.org
-[kpcli]: http://kpcli.sourceforge.net
+[kpx]:  https://www.keepassx.org
+[kpc]: http://kpcli.sourceforge.net
