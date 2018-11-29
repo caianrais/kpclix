@@ -50,7 +50,13 @@ sudo apt-get install xclip
 On debian-based systems, use:
 
 ```sh
-sudo apt-get install libcapture-tiny-perl ,libcrypt-rijndael-perl ,libdata-password-perl ,libfile-keepass-perl ,libmath-random-isaac-perl ,libmath-random-isaac-xs-perl ,libterm-shellui-perl`
+sudo apt-get install libcapture-tiny-perl \
+    libcrypt-rijndael-perl \
+    libdata-password-perl \
+    libfile-keepass-perl \
+    libmath-random-isaac-perl \
+    libmath-random-isaac-xs-perl \
+    libterm-shellui-perl
 ```
 
 
